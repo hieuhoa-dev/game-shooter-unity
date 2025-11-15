@@ -23,6 +23,7 @@ public class PlayerMovementGrappling : MonoBehaviour
     private void Update()
     {
         ApplyGrappleVelocity();
+        CheckLanding();
     }
 
     
@@ -78,6 +79,15 @@ public class PlayerMovementGrappling : MonoBehaviour
         }
     }
     
+    private void CheckLanding()
+    {
+        if (activeGrapple && enableMovementOnNextTouch && controller.isGrounded)
+        {
+            enableMovementOnNextTouch = false;
+            ResetRestrictions();
+            GetComponent<Grappling>().StopGrapple();
+        }
+    }
     
     public void ResetRestrictions()
     {

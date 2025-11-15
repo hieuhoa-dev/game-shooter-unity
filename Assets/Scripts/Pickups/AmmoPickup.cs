@@ -6,6 +6,10 @@ public class AmmoPickup : Pickup
 
     protected override void OnPickup(ActiveWeapon activeWeapon)
     {
-        activeWeapon.AdjustAmmo(ammoAmount);
+        WeaponSO currentWeapon = GunManager.instance.currentWeaponSO;
+        if (currentWeapon != null)
+        {
+            GunManager.instance.AdjustAmmo(currentWeapon, ammoAmount);
+        }
     }
 }
